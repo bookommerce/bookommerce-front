@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SigninPageStyle, FormSigninPage } from "./SigninPageStyles.js"
 import { ThreeDots } from "react-loader-spinner"
@@ -8,15 +7,19 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { api } from "../../services/api.js";
 import Input from "../Input/Input.jsx";
 import Button from "../Button/Button.jsx";
+import { useContext, useState } from "react";
+import { UserContext } from "../../contexts/UserContext.jsx";
 
 const SigninPage = () => {
     const navigate = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(signinSchema),
     })
-    const [loading, setLoading] = useState(false)
-    const [disabled, setDisabled] = useState(false)
     const onInvalid = (errors) => console.error(errors)
+    const [disabled, setDisabled] = useState(false)
+    const [loading, setLoading] = useState(false)    
+    const [user, setUser] = useState(false)
+    const [token, setToken] = useState(false)    
 
     const submitFormFunctionSignin = async (data) => {
         setLoading(true)
@@ -26,6 +29,8 @@ const SigninPage = () => {
             if (response.status === 201) {
                 setLoading(false)
                 setDisabled(false)
+                setToken(response.data.token)
+                setUser(response.data)
                 navigate("/home")
             }
         } catch (error) {
