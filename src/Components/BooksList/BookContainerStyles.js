@@ -1,22 +1,6 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export default function BookContainer({ book }) {
-    return (
-        <Container>
-            <Link to={`/book/${book._id}`}>
-                <img src={book.Image} />
-                <BookName>{book.Name}</BookName>
-            </Link>
-            <Price_Like>
-                <p>{book.Price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL'})}</p>
-                <ion-icon name="heart-outline"></ion-icon>
-            </Price_Like>
-        </Container>
-    );
-}
-
-const Container = styled.div`
+export const Container = styled.div`
     width: 130px;
     height: 190px;
 
@@ -33,7 +17,7 @@ const Container = styled.div`
     }
 `;
 
-const BookName = styled.p`
+export const BookName = styled.p`
     width: 100%;
     height: auto;
     max-height: 37px;
@@ -47,7 +31,7 @@ const BookName = styled.p`
     text-overflow: ellipsis;
 `;
 
-const Price_Like = styled.div`
+export const Price_Like = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
