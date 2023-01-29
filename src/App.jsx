@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CartPage from "./Components/CartPage/CartPage.jsx";
+import SigninPage from "./Components/SigninPage/SigninPage.jsx";
 // import BookDetails from "./Components/BookDetails/BookDetails.jsx";
 // import Home from './Components/Home/Home';
-import SigninPage from "./components/SigninPage/SigninPage.jsx";
-import SignupPage from "./components/SignupPage/SignupPage.jsx";
+import SignupPage from "./Components/SignupPage/SignupPage.jsx";
 import { UserContext } from "./contexts/UserContext";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path='/signup' element={<SignupPage />} />
           {/* <Route path='/home' element={<Home />} />
           <Route path="/book/:idBook" element={<BookDetails />} /> */}
+          <Route path='/cart' element={<CartPage />} />
         </Routes>
       </UserContext.Provider>
     </BrowserRouter>
