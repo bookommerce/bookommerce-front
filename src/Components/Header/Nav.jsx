@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
+import { api } from "../../services/api";
 import NavLink from "./NavLink";
 import { BlackPanel, NavStyle } from "./NavStyles";
 
@@ -10,7 +10,7 @@ export default function Nav({ active, setActive }) {
 
     useEffect(() => {
         setLoading(true);
-        axios.get("http://localhost:5000/categories")
+        api.get("/categories")
             .then(res => {
                 setCategories(res.data);
                 setLoading(false);
@@ -33,7 +33,6 @@ export default function Nav({ active, setActive }) {
                     {
                         loading ?
                             <ThreeDots
-                                className="loader"
                                 height="60"
                                 width="60"
                                 radius="9"

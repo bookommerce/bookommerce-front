@@ -11,12 +11,21 @@ export default function Category() {
 
     useEffect(() => {
         setBooksList([]);
-        api.get(`/books`, { headers: { category}})
+        if (category)
+        {
+            api.get(`/books/category`, { headers: { category}})
             .then(res => setBooksList(res.data))
             .catch(res => console.log(res));
+        }
+        else
+        {
+            api.get(`/books`)
+            .then(res => setBooksList(res.data.sort((a, b) => b.Likes - a.Likes)))
+            .catch(res => console.log(res));
+        }
+
     }, [category]);
 
-    if(!category) booksList.sort((a, b) => b.Likes - a.Likes);
 
     return (
         <CategoryStyle>
