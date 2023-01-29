@@ -4,28 +4,29 @@ export const CheckoutStyle = styled.div`
     margin-top: 50px;
     padding: 20px 30px;
 
-    div{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        ion-icon{
-            color: #4E4D93;
-            width: 0px;
-            height: 0px;
-            transition: all 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55)
-        }
-    }
     div.loaded{
         ion-icon{
-            width: 200px;
-            height: 200px;
+            width: 150px;
+            height: 150px;
         }
     }
 `;
 
-export const CheckouTitle = styled.h1`
+export const MainDiv = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    ion-icon{
+        color: #4E4D93;
+        width: 0px;
+        height: 0px;
+        transition: all 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55)
+    }
+`;
+
+export const PageTitle = styled.h1`
     font-size: 24px;
     color: black;
     margin-bottom: 50px;
