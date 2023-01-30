@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BookDetails from "./Components/BookDetails/BookDetails.jsx";
 import Category from "./Components/Category/Category.jsx";
-import Home from './Components/Home/Home';
+import Home from './Components/Home/Home.jsx';
 import SigninPage from "./Components/SigninPage/SigninPage.jsx";
 import SignupPage from "./Components/SignupPage/SignupPage.jsx";
 import { UserContext } from "./contexts/UserContext";
