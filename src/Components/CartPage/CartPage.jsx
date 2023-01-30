@@ -36,7 +36,6 @@ const CartPage = () => {
         }
         getCartProducts()
     }, [token])
-    
 
     return (
         <CartPageStyle>

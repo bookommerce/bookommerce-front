@@ -1,8 +1,12 @@
 import { ThreeDots } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
 import BookContainer from "./BookContainer";
 import { BooksListStyle, List, Title, ViewMore } from "./BooksListStyles";
 
 export default function BooksList({ booksList, title, complete }) {
+    const navigate = useNavigate();
+    const category = title === "Mais curtidos" ? "" : title;
+
     return (
         <BooksListStyle>
             <Title>{title}</Title>
@@ -23,8 +27,7 @@ export default function BooksList({ booksList, title, complete }) {
                     </List>
             }
 
-            {!complete && <ViewMore>Ver mais</ViewMore>}
-
+            {!complete && <ViewMore onClick={() => navigate(`/category/${category}`)}>Ver mais</ViewMore>}
         </BooksListStyle>
     );
 }
