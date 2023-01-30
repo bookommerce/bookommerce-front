@@ -67,10 +67,10 @@ const SigninPage = () => {
                         disabled={disabled} />
                 </FormSigninPage>
                 <span>
+                    <span>Não tem uma conta? </span>
                     <Link to={"/signup"}>
-                        <span>Não tem uma conta?</span>
+                        Cadastre-se
                     </Link>
-                    Cadastre-se
                 </span>
             </SigninPageStyle>
         )
