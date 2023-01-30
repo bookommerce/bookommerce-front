@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
+import { UserContext } from "../../contexts/UserContext";
 import { api } from "../../services/api";
 import NavLink from "./NavLink";
 import { BlackPanel, NavStyle } from "./NavStyles";
@@ -7,10 +8,11 @@ import { BlackPanel, NavStyle } from "./NavStyles";
 export default function Nav({ active, setActive }) {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(false);
+    const { token } = useContext(UserContext);
 
     useEffect(() => {
         setLoading(true);
-        api.get("/categories")
+        api.get("/categories", { headers: { Authorization: token } })
             .then(res => {
                 setCategories(res.data);
                 setLoading(false);
@@ -27,7 +29,7 @@ export default function Nav({ active, setActive }) {
                 <p>Olá, Fulano</p>
                 <div>
                     <NavLink to="/home" text="Home" setActive={setActive} />
-                    <NavLink to="/carrinho" text="Carrinho" setActive={setActive} />
+                    <NavLink to="/cart" text="Carrinho" setActive={setActive} />
                 </div>
                 <div>
                     {
