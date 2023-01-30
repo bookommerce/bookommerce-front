@@ -15,6 +15,9 @@ const AddressFormSchema = yup.object().shape({
         .required("O endereço é obrigatório.")
         .min(5, "O nome deve ter pelo menos 5 caracteres!")
         .matches(/(?=.*?[0-9])/, "A senha deve ter no mínimo 1 número"),
+    district: yup
+        .string()
+        .required("O bairro é obrigatório."),
     postalCode: yup
         .string()
         .required("Você deve confirmar sua senha.")

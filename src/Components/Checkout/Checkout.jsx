@@ -15,26 +15,31 @@ export default function Checkout() {
     const { token } = useContext(UserContext);
     const [books, setBooks] = useState(undefined)
     setTimeout(() => setLoading(false), 2000);
+    const [completedPayment, setcompletedPayment] = useState(false);
 
-    useEffect(()=> {
+    useEffect(() => {
         const getCartProducts = async () => {
-            try {
+            try
+            {
                 const response = await api.get(`/cart`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
 
-                if(!response) {
+                if (!response)
+                {
                     return null;
-                } else if (response && response.status === 200) {
+                } else if (response && response.status === 200)
+                {
                     setBooks(response.data)
                 }
-            } catch (error) {
+            } catch (error)
+            {
                 console.error(error)
             }
         }
-        getCartProducts()
+        getCartProducts();
     }, [token])
 
     console.log(books)
@@ -43,43 +48,44 @@ export default function Checkout() {
             <Header />
             <CheckoutStyle>
                 <PageTitle>Status do pagamento</PageTitle>
-                <MainDiv className={!loading && "loaded"}>
-                    {loading ?
-                        <>
-                            <PaymentStatus>Processando pagamento</PaymentStatus>
-                            <ThreeDots
-                                height="200"
-                                width="100"
-                                radius="9"
-                                color="#2A254B"
-                                ariaLabel="three-dots-loading"
-                                wrapperStyle={{}}
-                                wrapperClassName=""
-                                visible={true}
-                            />
-                        </>
-                        :
-                        <>
-                            <PaymentStatus>Pagamento confirmado!</PaymentStatus>
-                        </>
-                    }
-                    <ion-icon name="checkmark-circle"></ion-icon>
-                    {
-                        !loading &&
-                        <>
-                            <AddressForm />
-                            <PaymentForm />
-                            {/* <SalesData user={{ Name: "Fulano" }}
-                                address={{ State: "RJ", City: "rio de janeiro", Address: "XV de novembro 234", ZipCode: "65300-234" }}
-                                payment={{ Name: "Fulano", Number: "1234-1234-1234-1245", Validity: "01/24", CVC: "123" }}
-                                books={
-                                   books.map((book) => book.book)
-                                } />
-                            <HomeButton onClick={() => navigate('/home')}>Voltar a Home</HomeButton> */}
-                        </>
+                {completedPayment ?
+                    <MainDiv className={!loading && "loaded"}>
+                        {loading ?
+                            <>
+                                <PaymentStatus>Processando pagamento</PaymentStatus>
+                                <ThreeDots
+                                    height="200"
+                                    width="100"
+                                    radius="9"
+                                    color="#2A254B"
+                                    ariaLabel="three-dots-loading"
+                                    wrapperStyle={{}}
+                                    wrapperClassName=""
+                                    visible={true}
+                                />
+                            </>
+                            :
+                            <>
+                                <PaymentStatus>Pagamento confirmado!</PaymentStatus>
+                            </>
+                        }
+                        <ion-icon name="checkmark-circle"></ion-icon>
+                    </MainDiv>
+                    :
+                    <MainDiv>
+                        <AddressForm />
+                        <PaymentForm />
+                                {/* <SalesData user={{ Name: "Fulano" }}
+                    address={{ State: "RJ", City: "rio de janeiro", Address: "XV de novembro 234", ZipCode: "65300-234" }}
+                    payment={{ Name: "Fulano", Number: "1234-1234-1234-1245", Validity: "01/24", CVC: "123" }}
+                    books={
+                       books.map((book) => book.book)
+                    } />
+                <HomeButton onClick={() => navigate('/home')}>Voltar a Home</HomeButton> */}
 
-                    }
-                </MainDiv>
+                    </MainDiv>
+                }
+
             </CheckoutStyle>
         </>
     );
