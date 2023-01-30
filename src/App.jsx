@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import BookDetails from "./Components/BookDetails/BookDetails.jsx";
-// import Home from './Components/Home/Home';
-import SigninPage from "./components/SigninPage/SigninPage.jsx";
-import SignupPage from "./components/SignupPage/SignupPage.jsx";
+import BookDetails from "./Components/BookDetails/BookDetails.jsx";
+import Category from "./Components/Category/Category.jsx";
+import Home from './Components/Home/Home';
+import SigninPage from "./Components/SigninPage/SigninPage.jsx";
+import SignupPage from "./Components/SignupPage/SignupPage.jsx";
 import { UserContext } from "./contexts/UserContext";
 
 function App() {
@@ -16,8 +17,9 @@ function App() {
         <Routes>
           <Route path='/' element={<SigninPage />} />
           <Route path='/signup' element={<SignupPage />} />
-          {/* <Route path='/home' element={<Home />} />
-          <Route path="/book/:idBook" element={<BookDetails />} /> */}
+          <Route path='/home' element={<Home />} />
+          <Route path='/category/:category?' element={<Category />} />
+          <Route path="/book/:idBook" element={<BookDetails />} />
         </Routes>
       </UserContext.Provider>
     </BrowserRouter>
