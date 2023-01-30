@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CartPageStyle = styled.main`
-    height: 100%;
+    height: 100vh;
     margin-top: 50px;
     background-color: #F9F9F9;    
     display: flex;
