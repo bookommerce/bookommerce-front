@@ -1,7 +1,7 @@
 import { BookData, SalesdataStyle, SalesDataTitle, Typedata } from "./SalesDataStyles";
 
 export default function SalesData({ user, address, books, payment }) {
-    console.log(address)
+
     return (
         <SalesdataStyle>
             <Typedata>

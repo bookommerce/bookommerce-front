@@ -47,7 +47,7 @@ export default function Checkout() {
             <Header />
             <CheckoutStyle>
                 <PageTitle>Status do pagamento</PageTitle>
-                {payment ?
+                {payment && addressData ?
                     <MainDiv className={!loading && "loaded"}>
                         {loading ?
                             <>
@@ -84,12 +84,8 @@ export default function Checkout() {
                             setPayment(p);
                             setTimeout(() => setLoading(false), 2000);
                         }} />
-                        {/*
-                 */}
-
                     </MainDiv>
                 }
-
             </CheckoutStyle>
         </>
     );
