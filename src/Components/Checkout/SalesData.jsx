@@ -1,7 +1,7 @@
 import { BookData, SalesdataStyle, SalesDataTitle, Typedata } from "./SalesDataStyles";
 
 export default function SalesData({ user, address, books, payment }) {
-
+    console.log(address)
     return (
         <SalesdataStyle>
             <Typedata>
@@ -26,10 +26,10 @@ export default function SalesData({ user, address, books, payment }) {
             </Typedata>
             <Typedata>
                 <SalesDataTitle>Dados de pagamento</SalesDataTitle>
-                <p>Nome: {payment.Name}</p>
-                <p>Número: {payment.Number}</p>
-                <p>Validade: {payment.Validity}</p>
-                <p>CVC: {payment.CVC}</p>
+                <p>Nome: {payment.name}</p>
+                <p>Número: {payment.number}</p>
+                <p>Validade: {payment.validity}</p>
+                <p>CVC: {payment.cvc}</p>
             </Typedata>
 
         </SalesdataStyle>

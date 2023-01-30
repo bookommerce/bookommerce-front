@@ -14,8 +14,7 @@ export default function Checkout() {
     const navigate = useNavigate();
     const { token, user } = useContext(UserContext);
     const [books, setBooks] = useState(undefined)
-    setTimeout(() => setLoading(false), 2000);
-    const [completedPayment, setcompletedPayment] = useState(false);
+    const [payment, setPayment] = useState(undefined);
     const [ addressData, setAddressData ] = useState("") 
 
     useEffect(() => {
@@ -43,13 +42,12 @@ export default function Checkout() {
         getCartProducts();
     }, [token])
 
-
     return (
         <>
             <Header />
             <CheckoutStyle>
                 <PageTitle>Status do pagamento</PageTitle>
-                {completedPayment ?
+                {payment ?
                     <MainDiv className={!loading && "loaded"}>
                         {loading ?
                             <>
@@ -68,19 +66,27 @@ export default function Checkout() {
                             :
                             <>
                                 <PaymentStatus>Pagamento confirmado!</PaymentStatus>
+                                <ion-icon name="checkmark-circle"></ion-icon>
+                                <SalesData user={user}
+                                    address={addressData}
+                                    payment={payment}
+                                    books={
+                                        books.map((book) => book.book)
+                                    } />
                             </>
                         }
-                        <ion-icon name="checkmark-circle"></ion-icon>
+                        <HomeButton onClick={() => navigate('/home')}>Voltar a Home</HomeButton>
                     </MainDiv>
                     :
                     <MainDiv>
-                        <AddressForm setAddressData={setAddressData} addressData={addressData}/>
-                        <PaymentForm />
-                            <SalesData user={user}
-                            address={addressData}
-                            payment={{ Name: "Fulano", Number: "1234-1234-1234-1245", Validity: "01/24", CVC: "123" }}
-                            books={books.map((book) => book.book)}/> 
-                        <HomeButton onClick={() => navigate('/home')}>Voltar a Home</HomeButton> 
+                        <AddressForm setAddressData={setAddressData} addressData={addressData} />
+                        <PaymentForm setPayment={(p) => {
+                            setPayment(p);
+                            setTimeout(() => setLoading(false), 2000);
+                        }} />
+                        {/*
+                 */}
+
                     </MainDiv>
                 }
 
