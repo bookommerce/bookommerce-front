@@ -5,10 +5,10 @@ import signinSchema from "./SigninPageSchema.js";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { api } from "../../services/api.js";
-import Input from "../Input/Input.jsx";
-import Button from "../Button/Button.jsx";
 import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext.jsx";
+import Input from "../Input/Input.jsx"
+import Button from "../Button/Button.jsx"
 
 const SigninPage = () => {
     const navigate = useNavigate()
@@ -67,10 +67,10 @@ const SigninPage = () => {
                         disabled={disabled} />
                 </FormSigninPage>
                 <span>
+                    <span>Não tem uma conta? </span>
                     <Link to={"/signup"}>
-                        <span>Não tem uma conta?</span>
+                        Cadastre-se
                     </Link>
-                    Cadastre-se
                 </span>
             </SigninPageStyle>
         )
