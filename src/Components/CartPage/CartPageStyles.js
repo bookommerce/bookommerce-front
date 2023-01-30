@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CartPageStyle = styled.main`
     height: 100vh;
     margin-top: 50px;
-    background-color: #F9F9F9;    
+    background-color: #F9F9F9;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -49,7 +49,7 @@ export const CartBottom = styled.div`
         font-size: 20px;
         line-height: 140%;
     }
-   
+
     button {
         display: flex;
         margin: 0 auto;
