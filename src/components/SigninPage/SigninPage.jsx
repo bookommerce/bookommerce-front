@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SigninPageStyle, FormSigninPage } from "./SigninPageStyles.js"
 import { ThreeDots } from "react-loader-spinner"
@@ -8,24 +7,33 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { api } from "../../services/api.js";
 import Input from "../Input/Input.jsx";
 import Button from "../Button/Button.jsx";
+import { useContext, useState } from "react";
+import { UserContext } from "../../contexts/UserContext.jsx";
 
 const SigninPage = () => {
     const navigate = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(signinSchema),
     })
-    const [loading, setLoading] = useState(false)
-    const [disabled, setDisabled] = useState(false)
     const onInvalid = (errors) => console.error(errors)
+    const [disabled, setDisabled] = useState(false)
+    const [loading, setLoading] = useState(false)
+    const { setUser, setToken } = useContext(UserContext)
 
     const submitFormFunctionSignin = async (data) => {
         setLoading(true)
         setDisabled(true)
         try {
-            const response = await api.post(`/signin`, data)
-            if (response.status === 201) {
+            const response = await api.post("/signin", data)
+            console.log(response)
+            if (response.status === 200) {
                 setLoading(false)
                 setDisabled(false)
+                setUser({
+                    id: response.data.id,
+                    name: response.data.name
+                })
+                setToken(response.data.token)
                 navigate("/home")
             }
         } catch (error) {
@@ -59,10 +67,10 @@ const SigninPage = () => {
                         disabled={disabled} />
                 </FormSigninPage>
                 <span>
-                    <Link to={"/"}>
-                        <span></span>
+                    <span>Não tem uma conta? </span>
+                    <Link to={"/signup"}>
+                        Cadastre-se
                     </Link>
-                    com sua conta
                 </span>
             </SigninPageStyle>
         )

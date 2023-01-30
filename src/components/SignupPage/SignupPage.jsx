@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SignupPageStyle, FormSignupPage } from "./SignupPageStyles.js"
 import { ThreeDots } from "react-loader-spinner"
@@ -8,21 +8,21 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { api } from "../../services/api.js";
 import Input from "../Input/Input.jsx";
 import Button from "../Button/Button.jsx";
+import { UserContext } from "../../contexts/UserContext.jsx";
 
 const SignupPage = () => {
     const navigate = useNavigate()
-    const { register, unregister, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(signupSchema),
     })
-    const [loading, setLoading] = useState(false)
-    const [disabled, setDisabled] = useState(false)
     const onInvalid = (errors) => console.error(errors)
+    const [disabled, setDisabled] = useState(false)
+    const [loading, setLoading] = useState(false)    
 
     const submitFormFunctionSignup = async (data) => {
         setLoading(true)
         setDisabled(true)
         try {
-            unregister("passwordConfirm")
             const response = await api.post(`/signup`, data)
             if (response.status === 201) {
                 setLoading(false)

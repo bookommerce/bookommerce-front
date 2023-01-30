@@ -1,14 +1,19 @@
+import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BookDetails from "./Components/BookDetails/BookDetails.jsx";
 import Category from "./Components/Category/Category.jsx";
 import Home from './Components/Home/Home';
 import SigninPage from "./Components/SigninPage/SigninPage.jsx";
 import SignupPage from "./Components/SignupPage/SignupPage.jsx";
+import { UserContext } from "./contexts/UserContext";
 
 function App() {
+  const [user, setUser] = useState(undefined)
+  const [token, setToken] = useState(undefined)
+
   return (
-    <div className="App">
-      <BrowserRouter>
+    <BrowserRouter>
+      <UserContext.Provider value={{ user, setUser, token, setToken }}>
         <Routes>
           <Route path='/' element={<SigninPage />} />
           <Route path='/signup' element={<SignupPage />} />
@@ -16,8 +21,8 @@ function App() {
           <Route path='/category/:category?' element={<Category />} />
           <Route path="/book/:idBook" element={<BookDetails />} />
         </Routes>
-      </BrowserRouter>
-    </div>
+      </UserContext.Provider>
+    </BrowserRouter>
   );
 }
 
