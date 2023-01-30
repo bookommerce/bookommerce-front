@@ -54,6 +54,7 @@ export const AddToCart = styled.button`
     background-color: #2A254B;
     font-size: 14px;
     padding: 0 20px;
+    cursor: pointer;
 `;
 
 export const BookDescription = styled.h2`

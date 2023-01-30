@@ -15,7 +15,7 @@ export const HeaderStyle = styled.header`
     background-color: #2A254B;
     color: white;
 
-    p{
+    p {
         font-size: 24px;
     }
 
@@ -30,5 +30,10 @@ export const HeaderStyle = styled.header`
             width: 20px;
             margin-right: 10px;
         }
+    }
+
+    a {
+        text-decoration: none;
+        color: #fff;
     }
 `;

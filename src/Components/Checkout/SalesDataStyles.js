@@ -28,6 +28,8 @@ export const BookData = styled.div`
     margin-bottom: 10px;
     box-shadow: 0 0px 5px rgba(0,0,0,.4);
     padding: 5px;
+    max-width: 400px;
+    width: 100%;
 
     img{
         height: 70px;

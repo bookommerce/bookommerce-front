@@ -20,6 +20,7 @@ const SignupPage = () => {
     const [loading, setLoading] = useState(false)    
 
     const submitFormFunctionSignup = async (data) => {
+        console.log(data)
         setLoading(true)
         setDisabled(true)
         try {
@@ -46,7 +47,7 @@ const SignupPage = () => {
 
                     <Input register={register("email")} type="email" name="email" id="emailSignup" placeholder="E-mail" disabled={disabled} errors={errors.email?.message && <p aria-label="error">{errors.email.message}</p>} />
 
-                    <Input register={register("password")} type="password" name="password" id="passwordSignup" placeholder="Senha" disabled={disabled} errors={errors.password?.message && <p aria-label="error">{errors.password.message}</p>} />
+                    <Input register={register("password")} type="text" name="password" id="passwordSignup" placeholder="Senha" disabled={disabled} errors={errors.password?.message && <p aria-label="error">{errors.password.message}</p>} />
 
                     <Input register={register("passwordConfirm")} type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirme a senha" disabled={disabled} errors={errors.passwordConfirm?.message && <p aria-label="error">{errors.passwordConfirm.message}</p>} />
 

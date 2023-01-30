@@ -20,7 +20,7 @@ const CartPage = () => {
                         Authorization: `Bearer ${token}`
                     } 
                 });
-                console.log(response)
+                
                 if(!response) {
                     return null;
                 } else if (response && response.status === 200) {

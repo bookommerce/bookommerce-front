@@ -8,8 +8,7 @@ import { BlackPanel, NavStyle } from "./NavStyles";
 export default function Nav({ active, setActive }) {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(false);
-    const { token } = useContext(UserContext);
-
+    const { token, user } = useContext(UserContext);
     useEffect(() => {
         setLoading(true);
         api.get("/categories", { headers: { Authorization: token } })
@@ -26,7 +25,7 @@ export default function Nav({ active, setActive }) {
     return (
         <>
             <NavStyle active={active}>
-                <p>Olá, Fulano</p>
+                <p>Olá, {user.name}</p>
                 <div>
                     <NavLink to="/home" text="Home" setActive={setActive} />
                     <NavLink to="/cart" text="Carrinho" setActive={setActive} />

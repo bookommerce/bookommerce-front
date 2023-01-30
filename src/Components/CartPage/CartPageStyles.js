@@ -1,14 +1,13 @@
 import styled from "styled-components";
 
 export const CartPageStyle = styled.main`
-    height: 100vh;
-    margin-top: 50px;
+    margin-top: 5px;
     background-color: #F9F9F9;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 50px 0;
+    padding: 150px 0;
 
     h1 {
         color: #2A254B;
