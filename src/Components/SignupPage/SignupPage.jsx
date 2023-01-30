@@ -51,8 +51,6 @@ const SignupPage = () => {
 
                     <Input register={register("passwordConfirm")} type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirme a senha" disabled={disabled} errors={errors.passwordConfirm?.message && <p aria-label="error">{errors.passwordConfirm.message}</p>} />
 
-                    <Input register={register("address")} type="text" name="address" id="address" placeholder="Endereço" disabled={disabled} errors={errors.address?.message && <p aria-label="error">{errors.address.message}</p>} />
-
                     <Button type="submit" text={
                         <ThreeDots
                             height="60"
@@ -87,8 +85,6 @@ const SignupPage = () => {
                     <Input register={register("password")} type="password" name="password" id="passwordSignup" placeholder="Senha" disabled={disabled} errors={errors.password?.message && <p aria-label="error">{errors.password.message}</p>} />
 
                     <Input register={register("passwordConfirm")} type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirme a senha" disabled={disabled} errors={errors.passwordConfirm?.message && <p aria-label="error">{errors.passwordConfirm.message}</p>} />
-
-                    <Input register={register("address")} type="text" name="address" id="address" placeholder="Endereço" disabled={disabled} errors={errors.address?.message && <p aria-label="error">{errors.address.message}</p>} />
 
                     <Button type="submit" text="Cadastre-se" disabled={disabled} />
                 </FormSignupPage>
