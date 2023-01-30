@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { api } from "../../services/api";
 import BooksList from "../BooksList/BooksList";
 import Header from "../Header/Header";
 
@@ -9,10 +9,10 @@ export default function Home() {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:5000/books")
+        api.get("/books")
             .then(res => setBooksList(res.data))
             .catch(res => console.log(res));
-        axios.get("http://localhost:5000/categories")
+        api.get("/categories")
             .then(res => setCategories(res.data))
             .catch(res => console.log(res));
     }, []);

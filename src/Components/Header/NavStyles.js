@@ -22,7 +22,9 @@ export const NavStyle = styled.nav`
         display: flex;
         justify-content: space-between;
         align-items: center;
+        color: black;
     }
+
 
     p{
         font-size: 22px;
