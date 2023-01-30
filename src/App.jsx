@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CartPage from "./Components/CartPage/CartPage.jsx";
 import BookDetails from "./Components/BookDetails/BookDetails.jsx";
 import Category from "./Components/Category/Category.jsx";
 import Home from './Components/Home/Home.jsx';
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path='/' element={<SigninPage />} />
           <Route path='/signup' element={<SignupPage />} />
+          <Route path='/cart' element={<CartPage />} />
           <Route path='/home' element={<Home />} />
           <Route path='/category/:category?' element={<Category />} />
           <Route path="/book/:idBook" element={<BookDetails />} />
