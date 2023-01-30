@@ -24,7 +24,6 @@ function App() {
           <Route path='/category/:category?' element={<Category />} />
           <Route path="/book/:bookId" element={<BookDetails />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path='/cart' element={<CartPage />} />
         </Routes>
       </UserContext.Provider>
     </BrowserRouter>

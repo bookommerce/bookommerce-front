@@ -21,12 +21,11 @@ const SigninPage = () => {
     const { setUser, setToken } = useContext(UserContext)
 
     const submitFormFunctionSignin = async (data) => {
-        
+
         setLoading(true)
         setDisabled(true)
         try {
             const response = await api.post("/signin", data)
-            console.log(response)
             if (response.status === 200) {
                 setLoading(false)
                 setDisabled(false)

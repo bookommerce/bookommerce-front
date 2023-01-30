@@ -14,15 +14,28 @@ export const CheckoutStyle = styled.div`
 
 export const MainDiv = styled.div`
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 20px;
+    
     ion-icon{
         color: #4E4D93;
         width: 0px;
         height: 0px;
         transition: all 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55)
+    }
+
+    form {
+        max-width: 500px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
     }
 `;
 
@@ -52,4 +65,5 @@ export const HomeButton = styled.button`
     color: white;
     font-size: 18px;
     margin-top: 20px;
+    cursor: pointer;
 `;
