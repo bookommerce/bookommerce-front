@@ -1,4 +1,4 @@
-import { AddressFormStyle } from "./AddressFormStyles";
+import { AddressFormStyle, AddressStyle } from "./AddressFormStyles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { api } from "../../services/api.js";
@@ -59,7 +59,7 @@ export default function AddressForm() {
     }
 
     return (
-        <>
+        <AddressStyle>
             <h1>Dados de entrega</h1>
             <AddressFormStyle onSubmit={handleSubmit(submitFormFunctionAddress, onInvalid)}>
                 <Input register={register("State")} value={state} onChange={(e) => setState(e.target.value)} name="State" type="text" placeholder="UF" errors={errors.State?.message && <p aria-label="error">{errors.State.message}</p>} />
@@ -70,7 +70,7 @@ export default function AddressForm() {
                 <Input register={register("PostalCode")} value={postalCode} onChange={(e) => setPostalCode(e.target.value)} name="PostalCode" type="text" placeholder="CEP" errors={errors.PostalCode?.message && <p aria-label="error">{errors.PostalCode.message}</p>} />
                 <Button type="submit" text="Cadastrar endereço" />
             </AddressFormStyle>
-        </>
+        </AddressStyle>
 
     );
 }

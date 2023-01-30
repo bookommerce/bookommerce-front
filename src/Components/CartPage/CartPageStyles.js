@@ -61,4 +61,10 @@ export const CartBottom = styled.div`
         text-decoration: none;
     }
 
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
 `

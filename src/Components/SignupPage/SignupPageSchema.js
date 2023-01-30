@@ -22,9 +22,6 @@ const signupSchema = yup.object().shape({
         .string()
         .required("Você deve confirmar sua senha.")
         .oneOf([yup.ref('password')], 'As senhas não coincidem'),
-    address: yup
-        .string()
-        .required("Você deve informar um endereço")
 })
 
 export default signupSchema;
