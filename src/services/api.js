@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const baseurl = "http://localhost:5000"
+const baseurl = "https://bookommerce-back.onrender.com/"
 
 export const api = axios.create({
     baseURL: baseurl,
