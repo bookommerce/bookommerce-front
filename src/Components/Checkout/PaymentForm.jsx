@@ -44,13 +44,11 @@ export default function PaymentForm({setPayment}) {
         try
         {
             const response = await api.post("/payment", { payment: data}, { headers: { Authorization: `${token}` } })
-            console.log(response)
             if (response.status === 201)
             {
                 setPayment(data);
             }
-        } catch (error)
-        {
+        } catch (error) {
             alert("Erro: " + error)
         }
     }

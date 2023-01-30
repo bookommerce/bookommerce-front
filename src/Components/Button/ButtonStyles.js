@@ -13,6 +13,6 @@ export const ButtonStyle = styled.button`
     line-height: 23px;
     color: #FFFFFF;
     border-radius: 5px;
-    cursor: pointer;
     border: none; 
+    cursor: pointer;
 `

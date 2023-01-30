@@ -57,7 +57,6 @@ const CartPage = () => {
         {
             const value = data.postalCode.replace(/[^0-9]+/, '');
             const address = await (await api.get("/address", { headers: { Authorization: token } })).data;
-            console.log(address);
             if (address && value === address?.address.PostalCode.replace(/[^0-9]+/, '')) return navigate('/checkout');
 
 
@@ -70,13 +69,12 @@ const CartPage = () => {
                 District: newAddress.bairro
             };
 
-
-
             await api.post('/address', { address: _address }, { headers: { Authorization: token } });
             navigate('/checkout');
 
         } catch (error) {
-            console.log(error);
+           alert(error.response.data);
+           navigate('/checkout');
         }
     }
 
@@ -85,7 +83,7 @@ const CartPage = () => {
             <Header />
             <h1>Seu carrinho</h1>
             <Cart>
-                {cartProducts.map((product) => <Product img={product.book.Image} name={product.book.Name} price={product.book.Price} />)}
+                {cartProducts.map((product, index) => <Product img={product.book.Image} name={product.book.Name} price={product.book.Price} key={index} />)}
             </Cart>
             <CartBottom>
                 <span>Subtotal {balance.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>

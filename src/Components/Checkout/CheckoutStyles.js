@@ -65,4 +65,5 @@ export const HomeButton = styled.button`
     color: white;
     font-size: 18px;
     margin-top: 20px;
+    cursor: pointer;
 `;

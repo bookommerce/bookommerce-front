@@ -12,10 +12,10 @@ import SalesData from "./SalesData";
 export default function Checkout() {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
-    const { user } = useContext(UserContext);
-    const { token } = useContext(UserContext);
+    const { token, user } = useContext(UserContext);
     const [books, setBooks] = useState(undefined)
     const [payment, setPayment] = useState(undefined);
+    const [ addressData, setAddressData ] = useState("") 
 
     useEffect(() => {
         const getCartProducts = async () => {
@@ -47,7 +47,7 @@ export default function Checkout() {
             <Header />
             <CheckoutStyle>
                 <PageTitle>Status do pagamento</PageTitle>
-                {payment ?
+                {payment && addressData ?
                     <MainDiv className={!loading && "loaded"}>
                         {loading ?
                             <>
@@ -68,7 +68,7 @@ export default function Checkout() {
                                 <PaymentStatus>Pagamento confirmado!</PaymentStatus>
                                 <ion-icon name="checkmark-circle"></ion-icon>
                                 <SalesData user={user}
-                                    address={{ State: "RJ", City: "rio de janeiro", Address: "XV de novembro 234", ZipCode: "65300-234" }}
+                                    address={addressData}
                                     payment={payment}
                                     books={
                                         books.map((book) => book.book)
@@ -79,17 +79,13 @@ export default function Checkout() {
                     </MainDiv>
                     :
                     <MainDiv>
-                        <AddressForm />
+                        <AddressForm setAddressData={setAddressData} addressData={addressData} />
                         <PaymentForm setPayment={(p) => {
                             setPayment(p);
                             setTimeout(() => setLoading(false), 2000);
                         }} />
-                        {/*
-                 */}
-
                     </MainDiv>
                 }
-
             </CheckoutStyle>
         </>
     );
