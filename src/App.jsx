@@ -7,7 +7,6 @@ import Checkout from "./Components/Checkout/Checkout.jsx";
 import Home from './Components/Home/Home.jsx';
 import SigninPage from "./Components/SigninPage/SigninPage.jsx";
 import SignupPage from "./Components/SignupPage/SignupPage.jsx";
-import CartPage from "./Components/CartPage/CartPage.jsx";
 import { UserContext } from "./contexts/UserContext";
 
 function App() {
