@@ -58,7 +58,7 @@ const CartPage = () => {
             const value = data.postalCode.replace(/[^0-9]+/, '');
             const address = await (await api.get("/address", { headers: { Authorization: token } })).data;
             console.log(address);
-            if (value === address?.address.PostalCode.replace(/[^0-9]+/, '')) return navigate('/checkout');;
+            if (address && value === address?.address.PostalCode.replace(/[^0-9]+/, '')) return navigate('/checkout');
 
 
             const newAddress = await (await fetch(`https://viacep.com.br/ws/${value}/json/`)).json();

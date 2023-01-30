@@ -10,10 +10,11 @@ import { UserContext } from "../../contexts/UserContext";
 
 export default function AddressForm() {
     const { token } = useContext(UserContext);
-    const [addresData, setAddresData] = useState({});
+    const [addressData, setAddressData] = useState({});
     const [state, setState] = useState("");
     const [city, setCity] = useState("");
     const [address, setAddress] = useState("");
+    const [number, setNumber] = useState("");
     const [postalCode, setPostalCode] = useState("");
     const [district, setDistrict] = useState("");
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -24,20 +25,21 @@ export default function AddressForm() {
     useEffect(() => {
         api.get('/address', { headers: { Authorization: `${token}` } })
             .then(res => {
-                setAddresData(res.data.address);
+                setAddressData(res.data.address);
             })
             .catch(res => console.log(res));
     }, []);
 
     useEffect(() => {
-        setState(addresData.State);
-        setCity(addresData.City);
-        setAddress(addresData.Address);
-        setPostalCode(addresData.PostalCode);
-        setDistrict(addresData.District);
-    }, [addresData]);
+        setState(addressData.State);
+        setCity(addressData.City);
+        setAddress(addressData.Address);
+        setPostalCode(addressData.PostalCode);
+        setDistrict(addressData.District);
+    }, [addressData]);
 
     const submitFormFunctionAddress = async (data) => {
+        console.log(data)
         fetch(`https://viacep.com.br/ws/${data.postalCode}/json/`)
             .then(res => res.json())
             .then(json => console.log(json));
@@ -48,7 +50,8 @@ export default function AddressForm() {
             console.log(response)
             if (response.status === 201)
             {
-                setState(response.data.state)
+                setState(response.data.State);
+                setCity(response.data.City)
             }
         } catch (error) {
             alert("Erro: " + error)
@@ -59,11 +62,12 @@ export default function AddressForm() {
         <>
             <h1>Dados de entrega</h1>
             <AddressFormStyle onSubmit={handleSubmit(submitFormFunctionAddress, onInvalid)}>
-                <Input register={register("state")} value={state} name="state" type="text" placeholder="UF" errors={errors.state?.message && <p aria-label="error">{errors.state.message}</p>} />
-                <Input register={register("city")} name="city" type="text" placeholder="Cidade" errors={errors.city?.message && <p aria-label="error">{errors.city.message}</p>} />
-                <Input register={register("address")} name="address" type="text" placeholder="Endereço" errors={errors.address?.message && <p aria-label="error">{errors.address.message}</p>} />
-                <Input register={register("district")} name="district" type="text" placeholder="Bairro" errors={errors.district?.message && <p aria-label="error">{errors.district.message}</p>} />
-                <Input register={register("postalCode")} name="postalCode" type="text" placeholder="CEP" errors={errors.postalCode?.message && <p aria-label="error">{errors.postalCode.message}</p>} />
+                <Input register={register("State")} value={state} onChange={(e) => setState(e.target.value)} name="State" type="text" placeholder="UF" errors={errors.State?.message && <p aria-label="error">{errors.State.message}</p>} />
+                <Input register={register("City")} value={city} onChange={(e) => setCity(e.target.value)} name="City" type="text" placeholder="Cidade" errors={errors.City?.message && <p aria-label="error">{errors.City.message}</p>} />
+                <Input register={register("Address")} value={address} onChange={(e) => setAddress(e.target.value)} name="Address" type="text" placeholder="Endereço" errors={errors.Address?.message && <p aria-label="error">{errors.Address.message}</p>} />
+                {/* <Input register={register("Number")} value={number} onChange={(e) => setNumber(e.target.value)} name="Number" type="text" placeholder="Número" errors={errors.Number?.message && <p aria-label="error">{errors.Number.message}</p>} /> */}
+                <Input register={register("District")} value={district} onChange={(e) => setDistrict(e.target.value)} name="District" type="text" placeholder="Bairro" errors={errors.District?.message && <p aria-label="error">{errors.District.message}</p>} />
+                <Input register={register("PostalCode")} value={postalCode} onChange={(e) => setPostalCode(e.target.value)} name="PostalCode" type="text" placeholder="CEP" errors={errors.PostalCode?.message && <p aria-label="error">{errors.PostalCode.message}</p>} />
                 <Button type="submit" text="Cadastrar endereço" />
             </AddressFormStyle>
         </>
