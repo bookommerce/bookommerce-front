@@ -17,20 +17,23 @@ const SigninPage = () => {
     })
     const onInvalid = (errors) => console.error(errors)
     const [disabled, setDisabled] = useState(false)
-    const [loading, setLoading] = useState(false)    
-    const [user, setUser] = useState(false)
-    const [token, setToken] = useState(false)    
+    const [loading, setLoading] = useState(false)
+    const { setUser, setToken } = useContext(UserContext)
 
     const submitFormFunctionSignin = async (data) => {
         setLoading(true)
         setDisabled(true)
         try {
-            const response = await api.post(`/signin`, data)
-            if (response.status === 201) {
+            const response = await api.post("/signin", data)
+            console.log(response)
+            if (response.status === 200) {
                 setLoading(false)
                 setDisabled(false)
+                setUser({
+                    id: response.data.id,
+                    name: response.data.name
+                })
                 setToken(response.data.token)
-                setUser(response.data)
                 navigate("/home")
             }
         } catch (error) {
@@ -64,10 +67,10 @@ const SigninPage = () => {
                         disabled={disabled} />
                 </FormSigninPage>
                 <span>
-                    <Link to={"/"}>
-                        <span></span>
+                    <Link to={"/signup"}>
+                        <span>Não tem uma conta?</span>
                     </Link>
-                    com sua conta
+                    Cadastre-se
                 </span>
             </SigninPageStyle>
         )
