@@ -12,49 +12,40 @@ const CartPage = () => {
     const [ balance, setBalance ] = useState(0)
     const { token } = useContext(UserContext)
 
-    useEffect(() => {
+    useEffect(()=> { 
         const getCartProducts = async () => {
-            try
-            {
+            try {
                 const response = await api.get(`/cart`, {
                     headers: {
                         Authorization: `Bearer ${token}`
-                    }
+                    } 
                 });
-
-                if (!response)
-                {
+                console.log(response)
+                if(!response) {
                     return null;
-                } else if (response && response.status === 200)
-                {
+                } else if (response && response.status === 200) {
                     const balance = response.data.reduce((acc, product) => {
-                        return acc + product.value
+                        return acc + product.book.Price
                     }, 0);
                     setBalance(balance)
                     setCartProducts(response.data)
                 }
-            } catch (error)
-            {
+            } catch (error) {
                 console.error(error)
             }
         }
         getCartProducts()
-    }, []);
-
+    }, [token])
 
     return (
         <CartPageStyle>
             <Header />
             <h1>Seu carrinho</h1>
             <Cart>
-                <Product />
-                <Product />
-                <Product />
-                <Product />
-                <Product />
+               {cartProducts.map((product) => <Product img={product.book.Image} name={product.book.Name} price={product.book.Price} /> )}
             </Cart>
             <CartBottom>
-                <span>Subtotal "value"</span>
+                <span>Subtotal {balance.toLocaleString('pt-BR', {style: 'currency', currency : 'BRL'})}</span>
                 <Link to={"/checkout"}>
                     <Button text={"Vá para o checkout"} />
                 </Link>

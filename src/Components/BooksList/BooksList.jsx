@@ -28,7 +28,6 @@ export default function BooksList({ booksList, title, complete }) {
             }
 
             {!complete && <ViewMore onClick={() => navigate(`/category/${category}`)}>Ver mais</ViewMore>}
-
         </BooksListStyle>
     );
 }

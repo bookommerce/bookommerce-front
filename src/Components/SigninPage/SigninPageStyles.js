@@ -18,7 +18,6 @@ export const SigninPageStyle = styled.main`
 
     a {
         font-weight: 700;
-        font-size: 15px;
         line-height: 18px;
         color: #2A254B;
         text-decoration: none;

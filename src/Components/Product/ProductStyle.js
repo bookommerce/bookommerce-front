@@ -26,33 +26,3 @@ export const ProductDescriptionStyle = styled.div`
     gap: 5px;
     color: #2A254B;
 `
-
-export const ProductQuantityStyle = styled.div`
-    width: 122px;
-    height: 46px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    input, span {
-        width: 40px;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: transparent;
-        border: none;
-    }
-
-    span {
-        cursor: pointer;
-    }
-
-    input {
-        display: flex;
-        justify-content: center;
-        outline: 0;
-        padding-left: 15px;
-        color: #2A254B;
-    }
-`

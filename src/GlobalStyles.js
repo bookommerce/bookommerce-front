@@ -5,6 +5,10 @@ const GlobalStyles = createGlobalStyle`
         font-family: 'Clash Display', sans-serif;
         box-sizing: border-box;
     }
+
+    body {
+        height: 100vh;
+    }
 `;
 
 export default GlobalStyles;

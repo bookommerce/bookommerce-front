@@ -1,19 +1,13 @@
-import { ProductDescriptionStyle, ProductQuantityStyle, ProductStyle } from "./ProductStyle"
-import img1 from "../../assets/img1.png"
+import { ProductDescriptionStyle, ProductStyle } from "./ProductStyle"
 
-const Product = () => {
+const Product = ({img, name, description, price}) => {
     return (
         <ProductStyle>
-            <img src={img1} alt="" />
+            <img src={img} alt="" />
             <ProductDescriptionStyle>
-                <span>Graystone vase</span>
-                <p>A timeless ceramic vase with a tri color grey glaze.</p>
-                <p>£85</p>
-                <ProductQuantityStyle>
-                    <span>-</span>
-                    <input disabled placeholder="1" />
-                    <span>+</span>
-                </ProductQuantityStyle>
+                <span>{name}</span>
+                <p>{description}</p>
+                <p>{price.toLocaleString('pt-BR', {style: 'currency', currency : 'BRL'})}</p>
             </ProductDescriptionStyle>
         </ProductStyle>
     )
