@@ -1,15 +1,16 @@
 import { BookData, SalesdataStyle, SalesDataTitle, Typedata } from "./SalesDataStyles";
 
 export default function SalesData({ user, address, books, payment }) {
+
     return (
         <SalesdataStyle>
             <Typedata>
                 <SalesDataTitle>Dados de entrega</SalesDataTitle>
-                <p>Nome: {user.Name}</p>
+                <p>Nome: {user.name}</p>
                 <p>Estado: {address.State}</p>
                 <p>Cidade: {address.City}</p>
                 <p>Endereço: {address.Address}</p>
-                <p>CEP: {address.ZipCode}</p>
+                <p>CEP: {address.PostalCode}</p>
             </Typedata>
             <Typedata>
                 <SalesDataTitle>Produtos</SalesDataTitle>
