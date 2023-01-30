@@ -75,7 +75,7 @@ const SignupPage = () => {
     } else {
         return (
             <SignupPageStyle>
-                <h1>Cadastre-se</h1>
+                <h1>Crie sua conta</h1>
                 <FormSignupPage method="POST" onSubmit={handleSubmit(submitFormFunctionSignup, onInvalid)}>
 
                     <Input register={register("name")} type="text" name="name" id="nameSignup" placeholder="Nome" disabled={disabled} errors={errors.name?.message && <p aria-label="error">{errors.name.message}</p>} />
